@@ -1,11 +1,276 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+	<main class="page-shell">
+		<div class="hero-card">
+			<div class="badge">Portfolio</div>
+			<h1>Alextra3a</h1>
+			<p class="subtitle">Developer's personal page and portfolio</p>
+
+			<div class="links-row">
+				<a class="link-pill" href="https://github.com/alextra3a" target="_blank" rel="noreferrer">GitHub</a>
+				<a class="link-pill" href="mailto:github@alextra3a.dev">github@alextra3a.dev</a>
+				<a class="link-pill" href="https://alextra3a.dev" target="_blank" rel="noreferrer">alextra3a.dev</a>
+			</div>
+
+			<section class="about">
+				<h2>About Me</h2>
+				<p>I create stylish personal websites with a Japanese theme, minimalist interfaces, and a calm night palette.</p>
+			</section>
+
+			<div class="feature-grid">
+				<article>
+					<strong>Visual Style</strong>
+					<span>Tokyo Night · Neon Gloss</span>
+				</article>
+				<article>
+					<strong>Technologies</strong>
+					<span>Python · Rust · Go · TypeScript</span>
+				</article>
+				<article>
+					<strong>Domain</strong>
+					<span>alextra3a.dev</span>
+				</article>
+			</div>
+
+			<section class="repos">
+				<h2>Repositories</h2>
+				<div class="repo-grid">
+					<article class="repo-card">
+						<h3><a href="https://github.com/alextra3a/alextra3a.github.io" target="_blank" rel="noreferrer">alextra3a.github.io</a></h3>
+						<p>Developer's personal website on GitHub Pages.</p>
+						<div class="repo-meta">
+							<span class="language">Astro</span>
+							<span class="stars">⭐ 0</span>
+						</div>
+					</article>
+					<article class="repo-card">
+						<h3><a href="https://github.com/alextra3a/astro" target="_blank" rel="noreferrer">astro</a></h3>
+						<p>Developer's project on Astro.</p>
+						<div class="repo-meta">
+							<span class="language">Astro</span>
+							<span class="stars">⭐ 0</span>
+						</div>
+					</article>
+					<article class="repo-card">
+						<h3><a href="https://github.com/alextra3a/blockchain" target="_blank" rel="noreferrer">blockchain</a></h3>
+						<p>A simple Blockchain in Python.</p>
+						<div class="repo-meta">
+							<span class="language">Python</span>
+							<span class="stars">⭐ 0</span>
+						</div>
+					</article>
+					<article class="repo-card">
+						<h3><a href="https://github.com/alextra3a/online-hash" target="_blank" rel="noreferrer">online-hash</a></h3>
+						<p>Online tools provides md2, md5, sha1, sha2, sha512, bas64, html encode / decode functions.</p>
+						<div class="repo-meta">
+							<span class="language">JavaScript</span>
+							<span class="stars">⭐ 0</span>
+						</div>
+					</article>
+				</div>
+			</section>
+		</div>
+	</main>
 </Layout>
+
+<style>
+	.page-shell {
+		min-height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem;
+	}
+
+	.hero-card {
+		max-width: 740px;
+		width: 100%;
+		padding: 2.5rem;
+		border: 1px solid rgba(122, 162, 247, 0.15);
+		border-radius: 28px;
+		background: rgba(24, 25, 38, 0.92);
+		box-shadow: 0 32px 120px rgba(7, 10, 28, 0.35);
+		backdrop-filter: blur(18px);
+	}
+
+	.badge {
+		display: inline-flex;
+		padding: 0.35rem 0.8rem;
+		border-radius: 999px;
+		background: rgba(122, 162, 247, 0.12);
+		color: #7aa2f7;
+		font-size: 0.9rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		margin-bottom: 1rem;
+	}
+
+	h1 {
+		font-size: clamp(2.4rem, 5vw, 4.2rem);
+		margin: 0;
+		color: #c0caf5;
+	}
+
+	.subtitle {
+		margin: 1rem 0 1.8rem;
+		max-width: 54rem;
+		font-size: 1.05rem;
+		color: #a9b1d6;
+		line-height: 1.8;
+	}
+
+	.links-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.85rem;
+		margin-bottom: 2rem;
+	}
+
+	.link-pill {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.85rem 1.25rem;
+		border-radius: 999px;
+		border: 1px solid rgba(122, 162, 247, 0.22);
+		background: rgba(40, 44, 70, 0.86);
+		color: #d0d7ff;
+		font-weight: 600;
+		transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+	}
+
+	.link-pill:hover {
+		transform: translateY(-2px);
+		border-color: rgba(122, 162, 247, 0.55);
+		color: #eff0ff;
+	}
+
+	.about {
+		padding: 1.8rem 0;
+		border-top: 1px solid rgba(122, 162, 247, 0.08);
+		border-bottom: 1px solid rgba(122, 162, 247, 0.08);
+		margin-bottom: 2rem;
+	}
+
+	.about h2 {
+		margin: 0 0 0.75rem;
+		font-size: 1.2rem;
+		color: #7aa2f7;
+	}
+
+	.about p {
+		margin: 0;
+		color: #c0caf5;
+	}
+
+	.feature-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+		gap: 1rem;
+	}
+
+	.feature-grid article {
+		padding: 1.1rem 1.2rem;
+		border-radius: 20px;
+		background: rgba(17, 18, 30, 0.75);
+		border: 1px solid rgba(122, 162, 247, 0.1);
+	}
+
+	.feature-grid strong {
+		display: block;
+		font-size: 0.95rem;
+		margin-bottom: 0.65rem;
+		color: #7aa2f7;
+	}
+
+	.feature-grid span {
+		color: #c0caf5;
+		font-size: 0.95rem;
+	}
+
+	.repos {
+		padding: 2rem 0 0;
+		border-top: 1px solid rgba(122, 162, 247, 0.08);
+		margin-top: 2rem;
+	}
+
+	.repos h2 {
+		margin: 0 0 1.5rem;
+		font-size: 1.2rem;
+		color: #7aa2f7;
+	}
+
+	.repo-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 1.2rem;
+	}
+
+	.repo-card {
+		padding: 1.5rem;
+		border-radius: 20px;
+		background: rgba(17, 18, 30, 0.75);
+		border: 1px solid rgba(122, 162, 247, 0.1);
+		transition: transform 0.2s ease, border-color 0.2s ease;
+	}
+
+	.repo-card:hover {
+		transform: translateY(-4px);
+		border-color: rgba(122, 162, 247, 0.25);
+	}
+
+	.repo-card h3 {
+		margin: 0 0 0.75rem;
+		font-size: 1.1rem;
+		font-weight: 600;
+	}
+
+	.repo-card h3 a {
+		color: #c0caf5;
+		text-decoration: none;
+	}
+
+	.repo-card h3 a:hover {
+		text-decoration: underline;
+	}
+
+	.repo-card p {
+		margin: 0 0 1rem;
+		color: #a9b1d6;
+		font-size: 0.95rem;
+		line-height: 1.6;
+	}
+
+	.repo-meta {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-size: 0.85rem;
+	}
+
+	.language {
+		color: #7aa2f7;
+		font-weight: 500;
+	}
+
+	.stars {
+		color: #e0af68;
+	}
+
+	@media (max-width: 640px) {
+		.hero-card {
+			padding: 1.75rem;
+		}
+
+		.links-row {
+			justify-content: center;
+		}
+
+		.repo-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
