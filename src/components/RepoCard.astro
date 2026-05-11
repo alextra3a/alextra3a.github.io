@@ -1,0 +1,73 @@
+---
+interface Props {
+  name: string;
+  description?: string;
+  language?: string;
+  stars: number;
+  url: string;
+}
+
+const { name, description, language, stars, url } = Astro.props;
+---
+
+<article class="repo-card">
+  <h3><a href={url} target="_blank" rel="noreferrer">{name}</a></h3>
+  <p>{description || 'No description available'}</p>
+  <div class="repo-meta">
+    <span class="language">{language || 'Unknown'}</span>
+    <span class="stars">⭐ {stars}</span>
+  </div>
+</article>
+
+<style>
+  .repo-card {
+    padding: 1.5rem;
+    border-radius: 20px;
+    background: rgba(17, 18, 30, 0.75);
+    border: 1px solid rgba(122, 162, 247, 0.1);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .repo-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(122, 162, 247, 0.25);
+  }
+
+  .repo-card h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .repo-card h3 a {
+    color: #c0caf5;
+    text-decoration: none;
+  }
+
+  .repo-card h3 a:hover {
+    text-decoration: underline;
+  }
+
+  .repo-card p {
+    margin: 0 0 1rem;
+    color: #a9b1d6;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .repo-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+  }
+
+  .language {
+    color: #7aa2f7;
+    font-weight: 500;
+  }
+
+  .stars {
+    color: #e0af68;
+  }
+</style>

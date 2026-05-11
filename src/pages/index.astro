@@ -1,5 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import RepoCard from '../components/RepoCard.astro';
+
+interface Repository {
+  name: string;
+  description: string | null;
+  language: string | null;
+  stargazers_count: number;
+  html_url: string;
+}
+
+// Fetch public repositories from GitHub API
+const response = await fetch('https://api.github.com/users/alextra3a/repos');
+const allRepos: Repository[] = await response.json();
+
+// Filter only public repositories and sort by stars
+const repos = allRepos
+  .filter((repo) => !repo.private)
+  .sort((a, b) => b.stargazers_count - a.stargazers_count);
 ---
 
 <Layout>
@@ -38,38 +56,15 @@ import Layout from '../layouts/Layout.astro';
 			<section class="repos">
 				<h2>Repositories</h2>
 				<div class="repo-grid">
-					<article class="repo-card">
-						<h3><a href="https://github.com/alextra3a/alextra3a.github.io" target="_blank" rel="noreferrer">alextra3a.github.io</a></h3>
-						<p>Developer's personal website on GitHub Pages.</p>
-						<div class="repo-meta">
-							<span class="language">Astro</span>
-							<span class="stars">⭐ 0</span>
-						</div>
-					</article>
-					<article class="repo-card">
-						<h3><a href="https://github.com/alextra3a/astro" target="_blank" rel="noreferrer">astro</a></h3>
-						<p>Developer's project on Astro.</p>
-						<div class="repo-meta">
-							<span class="language">Astro</span>
-							<span class="stars">⭐ 0</span>
-						</div>
-					</article>
-					<article class="repo-card">
-						<h3><a href="https://github.com/alextra3a/blockchain" target="_blank" rel="noreferrer">blockchain</a></h3>
-						<p>A simple Blockchain in Python.</p>
-						<div class="repo-meta">
-							<span class="language">Python</span>
-							<span class="stars">⭐ 0</span>
-						</div>
-					</article>
-					<article class="repo-card">
-						<h3><a href="https://github.com/alextra3a/online-hash" target="_blank" rel="noreferrer">online-hash</a></h3>
-						<p>Online tools provides md2, md5, sha1, sha2, sha512, bas64, html encode / decode functions.</p>
-						<div class="repo-meta">
-							<span class="language">JavaScript</span>
-							<span class="stars">⭐ 0</span>
-						</div>
-					</article>
+					{repos.map((repo) => (
+						<RepoCard
+							name={repo.name}
+							description={repo.description}
+							language={repo.language}
+							stars={repo.stargazers_count}
+							url={repo.html_url}
+						/>
+					))}
 				</div>
 			</section>
 		</div>
@@ -207,57 +202,6 @@ import Layout from '../layouts/Layout.astro';
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 		gap: 1.2rem;
-	}
-
-	.repo-card {
-		padding: 1.5rem;
-		border-radius: 20px;
-		background: rgba(17, 18, 30, 0.75);
-		border: 1px solid rgba(122, 162, 247, 0.1);
-		transition: transform 0.2s ease, border-color 0.2s ease;
-	}
-
-	.repo-card:hover {
-		transform: translateY(-4px);
-		border-color: rgba(122, 162, 247, 0.25);
-	}
-
-	.repo-card h3 {
-		margin: 0 0 0.75rem;
-		font-size: 1.1rem;
-		font-weight: 600;
-	}
-
-	.repo-card h3 a {
-		color: #c0caf5;
-		text-decoration: none;
-	}
-
-	.repo-card h3 a:hover {
-		text-decoration: underline;
-	}
-
-	.repo-card p {
-		margin: 0 0 1rem;
-		color: #a9b1d6;
-		font-size: 0.95rem;
-		line-height: 1.6;
-	}
-
-	.repo-meta {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		font-size: 0.85rem;
-	}
-
-	.language {
-		color: #7aa2f7;
-		font-weight: 500;
-	}
-
-	.stars {
-		color: #e0af68;
 	}
 
 	@media (max-width: 640px) {
